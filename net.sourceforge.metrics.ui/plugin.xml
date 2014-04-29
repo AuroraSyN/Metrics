@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="net.sourceforge.metrics.ui"
+   name="Metrics UI Plug-in"
+   version="3.1.0"
+   provider-name="Volantec.biz and others"
+   class="net.sourceforge.metrics.ui.UiPlugin">
+
+   <runtime>
+      <library name="metricsui.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="net.sourceforge.metrics.core"/>
+   </requires>
+
+</plugin>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="biz.volantec.utils"
+   name="Utils Plug-in"
+   version="1.0.0"
+   provider-name="Volantec.biz"
+   class="biz.volantec.utils.UtilsPlugin">
+
+   <runtime>
+      <library name="utils.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.search"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.jface.text"/>
+   </requires>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.properties"
+            id="biz.volantec.utils.findUnused">
+         <menu
+               label="Search"
+               path="additions"
+               id="biz.volantec.utils.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               enablesFor="1"
+               label="Find Unused Entries"
+               tooltip="Find properties not references anywhere in the workspace"
+               class="biz.volantec.utils.actions.FindUnusedPropsAction"
+               menubarPath="biz.volantec.utils.menu1/group1"
+               id="biz.volantec.utils.findUnusedPropsAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+  <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Volantec Utilities"
+            id="unusedentries">
+      </category>
+      <view
+            allowMultiple="false"
+            class="biz.volantec.utils.views.UsusedEntriesView"
+            icon="icons/sample.gif"
+            category="unusedentries"
+            name="Unused Properties"
+            id="biz.volantec.utils.UsusedEntriesView">
+      </view>
+   </extension>
+  <extension
+        point="org.eclipse.search.searchPages">
+     <page
+           canSearchEnclosingProjects="true"
+           label="Find unused keys"
+           enabled="true"
+           icon="icons/tsearch_obj.gif"
+           class="biz.volantec.utils.search.SearchPage"
+           showScopeSection="true"
+           id="biz.volantec.utils.unused.searchpage"
+           extensions="properties:100,*:0"/>
+  </extension>
+
+</plugin>

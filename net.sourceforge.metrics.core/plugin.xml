@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="net.sourceforge.metrics.core"
+   name="Metrics Core Plug-in"
+   version="3.1.0"
+   provider-name="Volantec.biz and others"
+   class="net.sourceforge.metrics.core.MetricsCorePlugin">
+
+   <runtime>
+      <library name="metricscore.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.core.resources"/>
+   </requires>
+   <extension-point id="calculators" name="Metrics Calculators" schema="schema/calculators.exsd"/>
+   <extension-point id="database" name="Metrics Database" schema="schema/database.exsd"/>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.jdt.core.IJavaElement"
+            class="net.sourceforge.metrics.core.internal.MetricsAdapterFactory">
+         <adapter type="net.sourceforge.metrics.core.IMetricsElement"/>
+      </factory>
+   </extension>
+   <extension
+         id="nature"
+         name="Metrics Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="net.sourceforge.metrics.core.internal.MetricsNature">
+         </run>
+      </runtime>
+      <builder id="net.sourceforge.metrics.core.builder"/>
+   </extension>
+   <extension
+         id="builder"
+         name="Metrics Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="net.sourceforge.metrics.core.internal.builder.MetricsBuilder">
+         </run>
+      </builder>
+   </extension>
+</plugin>

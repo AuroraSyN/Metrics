@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="net.sourceforge.metrics.feature"
+      label="net.sourceforge.metrics.feature"
+      version="3.1.0"
+      provider-name="Volantec.biz and others">
+
+   <description url="http://www.yourdomain.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.yourdomain.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.yourdomain.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.ui"/>
+   </requires>
+
+   <plugin
+         id="net.sourceforge.metrics.core"
+         download-size="0"
+         install-size="0"
+         version="3.1.0"/>
+
+   <plugin
+         id="net.sourceforge.metrics.ui"
+         download-size="0"
+         install-size="0"
+         version="3.1.0"/>
+
+   <plugin
+         id="net.sourceforge.metrics.doc"
+         download-size="0"
+         install-size="0"
+         version="3.1.0"/>
+
+   <plugin
+         id="net.sourceforge.metrics.persistence.berkeleydb"
+         download-size="0"
+         install-size="0"
+         version="3.1.0"/>
+
+   <plugin
+         id="net.sourceforge.metrics.calculators"
+         download-size="0"
+         install-size="0"
+         version="3.1.0"/>
+
+</feature>
