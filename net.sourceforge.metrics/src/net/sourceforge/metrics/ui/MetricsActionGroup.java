@@ -42,7 +42,6 @@ public class MetricsActionGroup extends ActionGroup {
     private ResumeAction resumeAction;
 	private PauseAction pauseAction;
 	private ExportAction exportAction;
-	private GraphAction graphAction;
 	private AbortAllAction abortAction;
     private MetricsView metricsView;
 
@@ -56,7 +55,6 @@ public class MetricsActionGroup extends ActionGroup {
      */
     private void createActions() {
         exportAction  = new ExportAction();
-		graphAction  = new GraphAction();
 		abortAction  = new AbortAllAction();
 		pauseAction  = new PauseAction();
 		resumeAction  = new ResumeAction();
@@ -74,7 +72,6 @@ public class MetricsActionGroup extends ActionGroup {
 		toolBar.add(pauseAction);
  		toolBar.add(abortAction);
         toolBar.add(exportAction);
-		toolBar.add(graphAction);
      }
 
     void fillViewMenu(IMenuManager menu) {
@@ -82,31 +79,12 @@ public class MetricsActionGroup extends ActionGroup {
 		menu.add(pauseAction);
 		menu.add(abortAction);
 		menu.add(exportAction);
-		menu.add(graphAction);
         menu.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));        
     }
 
     public void fillContextMenu(IMenuManager menu) {
         super.fillContextMenu(menu);
     }
- 
-	private class GraphAction extends Action {
-		public GraphAction() {
-			super("&Dependency Graph", MetricsPlugin.createImage("gview.gif"));
-			setToolTipText("&Open the Dependency Graph View");
-		}
-
-		/**
-		 * @see org.eclipse.jface.action.Action#run()
-		 */
-		public void run() {
-			try {
-				getView().displayDependencyGraph();
-			} catch (RuntimeException e) {
-				Log.logError("GraphAction::run", e);
-			}
-		}
-	}
  
 	private class ExportAction extends Action {
 		public ExportAction() {
@@ -199,14 +177,6 @@ public class MetricsActionGroup extends ActionGroup {
 		pauseAction.setEnabled(MetricsBuilder.canPause());
 		resumeAction.setEnabled(MetricsBuilder.canResume());
 		exportAction.setEnabled(true);
-		IJavaElement sel = metricsView.getSelection();
-		if ((sel != null)&&
-		    ((sel.getElementType() == IJavaElement.PACKAGE_FRAGMENT_ROOT)||
-		      sel.getElementType() == IJavaElement.JAVA_PROJECT)) {
-			graphAction.setEnabled(true);
-		} else {
-			graphAction.setEnabled(false);
-		}
 	}
 	
 	public void disable() {
@@ -215,7 +185,6 @@ public class MetricsActionGroup extends ActionGroup {
 		pauseAction.setEnabled(MetricsBuilder.canPause());
 		resumeAction.setEnabled(MetricsBuilder.canResume());
 		exportAction.setEnabled(false);
-		graphAction.setEnabled(false);
 	}
 
 }

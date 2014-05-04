@@ -163,7 +163,7 @@ public abstract class AbstractMetricSource implements Constants, Serializable {
 	 * @see metrics.core.IMetricSource#calculate(org.eclipse.jdt.core.IJavaElement)
 	 */
 	public void calculate() {
-		//System.err.println("calculate: " + getJavaElement().getHandleIdentifier());
+		System.out.println("calculate: " + getJavaElement().getHandleIdentifier());
 		invokeCalculators();
 	}
 

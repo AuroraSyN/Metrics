@@ -93,7 +93,8 @@ public class MetricsView extends ViewPart implements ISelectionListener, IMetric
 		"Automatic builds will keep the metrics up-to-date by re-calculating the metrics for changed elements only.",
 		"",
 		"To temporarily pause calculations, click the pause button. Click the resume button to resume.",
-		"To abort all current and pending calculations, click the stop button."
+		"To abort all current and pending calculations, click the stop button.",
+		"This build of metrics plugin also calculates the QMOOD metrics"
 	};
 	
 
@@ -384,81 +385,7 @@ public class MetricsView extends ViewPart implements ISelectionListener, IMetric
 			}
 		});
 	}
-
-	/**
-	 * display dependency graph as embedded workbench view on Windows,
-	 * in a separate AWT frame on all other platforms.
-	 * As of 4/30/04, only 3.0M8+ and embedded style on all platforms
-	 */
-	public void displayDependencyGraph() {
-		/*
-		if (selection.getElementType() <= IJavaElement.PACKAGE_FRAGMENT_ROOT) {
-			IGraphContributor source = (IGraphContributor) Dispatcher.getAbstractMetricSource(selection);
-			if (Platform.OS_WIN32.equals(Platform.getOS())) {
-				displayDependencyGraphSWT(source.getEfferent());
-			} else {
-				displayDependencyGraphAWT(source.getEfferent());
-			}
-		}
-		*/
-		// now works the same on all platforms
-		IGraphContributor source = (IGraphContributor) Dispatcher.getAbstractMetricSource(selection);
-		displayDependencyGraphSWT(source.getEfferent());
-	}
-
-	private void displayDependencyGraphSWT(final Map graph) {
-		IWorkbenchWindow dw = PlatformUI.getWorkbench().getWorkbenchWindows()[0];
-		IWorkbenchPage page = dw.getActivePage();
-		if (page != null) {
-			DependencyGraphView v = (DependencyGraphView) page.findView("net.sourceforge.metrics.ui.DependencyGraphView");
-			if (v == null) {
-				try {
-					page.showView("net.sourceforge.metrics.ui.DependencyGraphView");
-				} catch (PartInitException e) {
-					e.printStackTrace();
-				}
-			} 
-			currentDependencies = graph;
-			fireArmEvent();
-		} 
-	}
-
-	/*
-	private void displayDependencyGraphAWT(final Map graph) {
-		Display.getCurrent().asyncExec(new Runnable() {
-		//Thread awt = new Thread(new Runnable() {
-			public void run() {
-				final Frame frame = new Frame("Dependencies");
-				final DependencyGraphPanel glPanel = new DependencyGraphPanel();
-				try {
-					glPanel.createDependencies(graph);
-				} catch (TGException e1) {
-					Log.logError("Could not create DependencyGraphPanel", e1);
-				}
-				frame.addWindowListener(new WindowAdapter() {
-					public void windowClosing(WindowEvent e) {
-					  frame.remove(glPanel);
-					  frame.dispose();
-					}
-				});
-				frame.add("Center", glPanel);
-				frame.setSize(800,600);
-				frame.setVisible(true);
-			}
-		});
-		//awt.start();
-	}	
-	*/
 	
-	/**
-	 * 
-	 */
-	private static void fireArmEvent() {
-		if (armListener != null) {
-			armListener.widgetArmed(null);
-		}
-	}
-
 	public static Map getDependencies() {
 		return currentDependencies;
 	}
