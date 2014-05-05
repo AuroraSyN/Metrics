@@ -92,6 +92,30 @@ public interface Constants {
 	public final static String RMA               = "RMA";
 	/** "RMD" */
 	public final static String RMD               = "RMD";
+	
+	// QMOOD Metrics IDs
+	/** "DES" */
+	public final static String DESIGN_SIZE       = "DES";
+	/** "HIR" */
+	public final static String HIERARCHIES       = "HIR";
+	/** "ABS" */
+	public final static String ABSTRACTION       = "ABS";
+	/** "CAP" */
+	public final static String ENCAPSULATION     = "CAP";
+	/** "CPL" */
+	public final static String COUPLING          = "CPL";
+	/** "COH" */
+	public final static String COHESION          = "COH";
+	/** "CPS" */
+	public final static String COMPOSITION       = "CPS";
+	/** "INHR" */
+	public final static String INHERITANCE       = "INHR";
+	/** "POL" */
+	public final static String POLYMORPHISM      = "POL";
+	/** "MSG" */
+	public final static String MESSAGING         = "MSG";
+	/** "CPX" */
+	public final static String COMPLEXITY        = "CPX";
 
 	// scopes for averages and maxima
 	/** "method" */
