@@ -18,13 +18,13 @@
             class="net.sourceforge.metrics.ui.MetricsView"
             id="net.sourceforge.metrics.ui.MetricsView">
       </view>
-      <view
+      <!--view
             name="Dependency Graph View"
             icon="icons/gview.gif"
             category="net.sourceforge.metrics"
             class="net.sourceforge.metrics.ui.DependencyGraphView"
             id="net.sourceforge.metrics.ui.DependencyGraphView">
-      </view>
+      </view-->
       <view
             allowMultiple="true"
             icon="icons/mview.gif"
@@ -301,13 +301,11 @@
             level="packageFragmentRoot">
       </metric>
 <!-- calculators -->
-<!--
       <calculator
             name="Lines of Code"
             calculatorClass="net.sourceforge.metrics.calculators.LinesOfCode"
             level="method">
       </calculator>
--->
       <calculator
             name="McCabe Cyclomatic Complexity"
             calculatorClass="net.sourceforge.metrics.calculators.McCabe"
@@ -322,6 +320,11 @@
             name="Nested Block Depth"
             calculatorClass="net.sourceforge.metrics.calculators.NestedBlockDepth"
             level="method">
+      </calculator>
+      <calculator
+            name="Design Size"
+            calculatorClass="net.sourceforge.metrics.calculators.DesignSize"
+            level="project">
       </calculator>
       <calculator
             name="Inheritance Depth"
