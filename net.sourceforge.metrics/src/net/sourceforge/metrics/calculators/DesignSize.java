@@ -1,11 +1,8 @@
 package net.sourceforge.metrics.calculators;
 
-import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.ITypeHierarchy;
-
 import net.sourceforge.metrics.core.Metric;
 import net.sourceforge.metrics.core.sources.AbstractMetricSource;
-import net.sourceforge.metrics.core.sources.TypeMetrics;
+import net.sourceforge.metrics.core.sources.ProjectMetrics;
 /**
  * Calculates the design complexity on the basis of number of classes in the application.
  * @author sumit bisht
@@ -19,13 +16,14 @@ public class DesignSize extends Calculator {
 	@Override
 	public void calculate(AbstractMetricSource source)
 			throws InvalidSourceException {
-		if (source.getLevel() != PROJECT) throw new InvalidSourceException("DesignSize metrics is only applicable to projects");
-		TypeMetrics tm = (TypeMetrics)source;
-		IType iType = (IType)source.getJavaElement();
-		ITypeHierarchy hierarchy = tm.getHierarchy();
-		IType[] supers = hierarchy.getAllSuperclasses(iType);
-		IType[] subs = hierarchy.getSubtypes(iType); // BUG #933209 
-		source.setValue(new Metric(DESIGN_SIZE, supers.length+subs.length));
+		if (source.getLevel() != PROJECT){
+			System.out.println("ERROR: Unable to proceed as the selected element is not a project. Design size only applies to projects");
+			throw new InvalidSourceException("DesignSize metrics is only applicable to projects");
+		}
+		ProjectMetrics projMt = (ProjectMetrics) source;
+		int size = projMt.getChildren().size();
+		System.out.println("Project size: "+size);
+		source.setValue(new Metric(DESIGN_SIZE, size));
 	}
 
 }
