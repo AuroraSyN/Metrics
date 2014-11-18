@@ -265,6 +265,11 @@
             level="type">
       </metric>
       <metric
+            name="Encapsulation (Private/Total field ratio)"
+            id="ENCAPSULATION"
+            level="type">
+      </metric>
+      <metric
             name="Number of Static Methods"
             id="NSM"
             level="type">
@@ -278,7 +283,7 @@
       </metric>
       <metric
             allowDisable="false"
-            name="Number of Classes"
+            name="Design Size"
             propagateAvg="false"
             newAvgMaxAt="packageFragmentRoot"
             propagateMax="false"
@@ -322,10 +327,15 @@
             level="method">
       </calculator>
       <calculator
+            name="Encapsulation"
+            calculatorClass="net.sourceforge.metrics.calculators.Encapsulation"
+            level="type">
+      </calculator>
+      <!--calculator
             name="Design Size"
             calculatorClass="net.sourceforge.metrics.calculators.DesignSize"
             level="project">
-      </calculator>
+      </calculator-->
       <calculator
             name="Inheritance Depth"
             calculatorClass="net.sourceforge.metrics.calculators.InheritanceDepth"
