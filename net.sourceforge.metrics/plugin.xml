@@ -199,12 +199,6 @@
             level="packageFragment">
       </metric>
       <metric
-            propagateSum="false"
-            name="Depth of Inheritance Tree"
-            id="DIT"
-            level="type">
-      </metric>
-      <metric
             sumOf="VG"
             name="Weighted methods per Class"
             requires="VG"
@@ -301,6 +295,12 @@
       <metric
             name="Polymorphism"
             id="NORM"
+            level="type">
+      </metric>
+      <metric
+            propagateSum="false"
+            name="Hierarchies"
+            id="DIT"
             level="type">
       </metric>
       <metric
