@@ -290,7 +290,7 @@
       </metric>
       <metric
             name="Encapsulation (Private/Total field ratio)"
-            id="ENCAPSULATION"
+            id="CAP"
             level="type">
       </metric>
       <metric
@@ -301,6 +301,11 @@
       <metric
             name="Polymorphism"
             id="NORM"
+            level="type">
+      </metric>
+      <metric
+            name="Messaging"
+            id="MSG"
             level="type">
       </metric>
 <!-- calculators -->
@@ -347,6 +352,11 @@
       <calculator
             name="Polymorphism"
             calculatorClass="net.sourceforge.metrics.calculators.Norm"
+            level="type">
+      </calculator>
+      <calculator
+            name="Messaging"
+            calculatorClass="net.sourceforge.metrics.calculators.Messaging"
             level="type">
       </calculator>
       <!--calculator
