@@ -134,15 +134,7 @@
          id="coremetrics"
          name="Core Metrics"
          point="net.sourceforge.metrics.metrics">
-      <metric
-            name="Lines of Code"
-            id="LOC"
-            level="method">
-         <range
-               max="50"
-               hint="use Extract-method to split the method up">
-         </range>
-      </metric>
+      
       <!--
       <metric
             propagateSum="false"
@@ -213,17 +205,6 @@
             level="type">
       </metric>
       <metric
-            sumOf="LOC"
-            name="Lines of Code"
-            requires="LOC"
-            id="LOCC"
-            level="type">
-         <range
-               max="750"
-               hint="Split up the class and use delegation">
-         </range>
-      </metric>
-      <metric
             sumOf="VG"
             name="Weighted methods per Class"
             requires="VG"
@@ -252,11 +233,6 @@
             level="type">
       </metric>
       <metric
-            name="Encapsulation (Private/Total field ratio)"
-            id="ENCAPSULATION"
-            level="type">
-      </metric>
-      <metric
             name="Number of Static Methods"
             id="NSM"
             level="type">
@@ -267,26 +243,6 @@
             requires="NOM,NORM,DIT"
             id="SIX"
             level="type">
-      </metric>
-      -->
-      <metric
-            name="Complexity"
-            id="NOM"
-            level="type">
-      </metric>
-      <metric
-            name="Polymorphism"
-            id="NORM"
-            level="type">
-      </metric>
-      <metric
-            allowDisable="false"
-            name="Design Size"
-            propagateAvg="false"
-            newAvgMaxAt="packageFragmentRoot"
-            propagateMax="false"
-            id="NOC"
-            level="compilationUnit">
       </metric>
       <metric
             allowDisable="false"
@@ -303,13 +259,57 @@
             id="NOP"
             level="packageFragmentRoot">
       </metric>
+      <metric
+            name="Lines of Code"
+            id="LOC"
+            level="method">
+         <range
+               max="50"
+               hint="use Extract-method to split the method up">
+         </range>
+      </metric>
+      <metric
+            sumOf="LOC"
+            name="Lines of Code"
+            requires="LOC"
+            id="LOCC"
+            level="type">
+         <range
+               max="750"
+               hint="Split up the class and use delegation">
+         </range>
+      </metric>
+      -->
+      <metric
+            name="Design Size"
+            propagateAvg="false"
+            newAvgMaxAt="packageFragmentRoot"
+            propagateMax="false"
+            id="NOC"
+            level="compilationUnit">
+      </metric>
+      <metric
+            name="Encapsulation (Private/Total field ratio)"
+            id="ENCAPSULATION"
+            level="type">
+      </metric>
+      <metric
+            name="Complexity"
+            id="NOM"
+            level="type">
+      </metric>
+      <metric
+            name="Polymorphism"
+            id="NORM"
+            level="type">
+      </metric>
 <!-- calculators -->
-      <calculator
+      <!--calculator
             name="Lines of Code"
             calculatorClass="net.sourceforge.metrics.calculators.LinesOfCode"
             level="method">
       </calculator>
-      <!--calculator
+      <calculator
             name="McCabe Cyclomatic Complexity"
             calculatorClass="net.sourceforge.metrics.calculators.McCabe"
             level="method">
@@ -339,24 +339,24 @@
             calculatorClass="net.sourceforge.metrics.calculators.InheritanceDepth"
             level="type">
       </calculator>
+      <calculator
+            name="Complexity"
+            calculatorClass="net.sourceforge.metrics.calculators.NumberOfMethods"
+            level="type">
+      </calculator>
+      <calculator
+            name="Polymorphism"
+            calculatorClass="net.sourceforge.metrics.calculators.Norm"
+            level="type">
+      </calculator>
       <!--calculator
             name="Lack of Cohesion of Methods"
             calculatorClass="net.sourceforge.metrics.calculators.LackOfCohesion"
             level="type">
       </calculator>
       <calculator
-            name="Number of Overridden Methods"
-            calculatorClass="net.sourceforge.metrics.calculators.Norm"
-            level="type">
-      </calculator>
-      <calculator
             name="Number of Attributes"
             calculatorClass="net.sourceforge.metrics.calculators.NumberOfAttributes"
-            level="type">
-      </calculator>
-      <calculator
-            name="Number of Methods"
-            calculatorClass="net.sourceforge.metrics.calculators.NumberOfMethods"
             level="type">
       </calculator>
       <calculator
@@ -369,7 +369,7 @@
             calculatorClass="net.sourceforge.metrics.calculators.RMartinCouplings"
             level="packageFragment">
       </calculator-->
-      <!-- G.B. -->
+      <!-- G.B.
       <calculator
             level="compilationUnit"
             calculatorClass="net.sourceforge.metrics.calculators.TotalLinesOfCode"
@@ -388,6 +388,7 @@
             name="Method Lines of Code"
             id="MLOC"
             allowDisable="true"/>
+      -->
    </extension>
    <extension
          point="net.sourceforge.metrics.exporters">
