@@ -304,6 +304,12 @@
             level="type">
       </metric>
       <metric
+            propagateSum="true"
+            name="Abstraction"
+            id="DIT"
+            level="project">
+      </metric>
+      <metric
             name="Messaging"
             id="MSG"
             level="type">
