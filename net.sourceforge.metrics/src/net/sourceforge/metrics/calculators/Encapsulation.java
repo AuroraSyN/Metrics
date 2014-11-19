@@ -64,8 +64,8 @@ public class Encapsulation extends Calculator implements Constants {
 			}
 			System.out.println("Found "+totFields+" fields, "+totMethods+" methods.");
 			double result = (privFields+privMethods)/(totFields+totMethods);
-			if(result == Double.NaN)
-				result = 0;
+			if(totFields+totMethods == 0)
+				result = 0;	
 			source.setValue(new Metric(ENCAPSULATION, result));
 		} catch (JavaModelException modelEx) {
 			source.setValue(new Metric(ENCAPSULATION, 0));
