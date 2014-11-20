@@ -319,6 +319,11 @@
             id="INHR"
             level="type">
       </metric>
+      <metric
+            name="Composition"
+            id="CPS"
+            level="type">
+      </metric>
 <!-- calculators -->
       <!--calculator
             name="Lines of Code"
@@ -373,6 +378,11 @@
       <calculator
             name="Inheritance Ratio"
             calculatorClass="net.sourceforge.metrics.calculators.InheritanceRatio"
+            level="type">
+      </calculator>
+      <calculator
+            name="Composition"
+            calculatorClass="net.sourceforge.metrics.calculators.Composition"
             level="type">
       </calculator>
       <!--calculator

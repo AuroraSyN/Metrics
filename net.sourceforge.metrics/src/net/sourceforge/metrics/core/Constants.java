@@ -108,6 +108,8 @@ public interface Constants {
 	public final static String COHESION          = "COH";
 	/** "CPS" */
 	public final static String COMPOSITION       = "CPS";
+	
+	public final static String CPS               = "CPS";
 	/** "INHR" */
 	public final static String INHERITANCE       = "INHR";
 	
