@@ -60,7 +60,7 @@ public abstract class AbstractMetricSource implements Constants, Serializable {
 	protected String handle = null;
 	transient private AbstractMetricSource parent = null;
 	transient private List children = null;
-	private Map values = new HashMap();
+	private Map<String, Metric> values = new HashMap<String, Metric>();
 	private Map averages = new HashMap();
 	private Map maxima = new HashMap();
 	private List childHandles = new ArrayList();
@@ -193,7 +193,7 @@ public abstract class AbstractMetricSource implements Constants, Serializable {
 	 * @param value
 	 */
 	public void setValue(Metric value) {
-		//System.err.println(input.getElementName()+"."+value.getName() + " = " + value.doubleValue());
+		System.err.println("DEBUG:: "+value.getName() + " = " + value.doubleValue());
 		values.put(value.getName(), value);
 		if (MetricsPlugin.isWarningsEnabled() && !value.isPropagated()) {
 			checkRange(value);
@@ -477,14 +477,14 @@ public abstract class AbstractMetricSource implements Constants, Serializable {
 
 	/**
 	 * invokes calculate() on all calculators.
+	 * Updated iteration code to avoid npe conditions
 	 * TODO fine-grained Cache lookup so we can add new metrics
 	 */
 	protected void invokeCalculators() {
-		for (Iterator i = getCalculators().iterator(); i.hasNext();) {
-			if (metricsInterruptus()) return;
-			ICalculator c = (ICalculator)i.next();
+		List<ICalculator> calculators = getCalculators();
+		for(ICalculator calc : calculators){
 			try {
-				c.calculate(this);
+				calc.calculate(this);
 			} catch (OutOfMemoryError m) {
 				throw m; 
 			} catch (Throwable e) {
