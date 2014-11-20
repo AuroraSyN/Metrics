@@ -314,6 +314,11 @@
             id="MSG"
             level="type">
       </metric>
+      <metric
+            name="Inheritance Ratio"
+            id="INHR"
+            level="type">
+      </metric>
 <!-- calculators -->
       <!--calculator
             name="Lines of Code"
@@ -363,6 +368,11 @@
       <calculator
             name="Messaging"
             calculatorClass="net.sourceforge.metrics.calculators.Messaging"
+            level="type">
+      </calculator>
+      <calculator
+            name="Inheritance Ratio"
+            calculatorClass="net.sourceforge.metrics.calculators.InheritanceRatio"
             level="type">
       </calculator>
       <!--calculator

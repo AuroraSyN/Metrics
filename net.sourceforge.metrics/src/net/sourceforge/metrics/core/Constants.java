@@ -110,6 +110,8 @@ public interface Constants {
 	public final static String COMPOSITION       = "CPS";
 	/** "INHR" */
 	public final static String INHERITANCE       = "INHR";
+	
+	public final static String INHR              = "INHR";
 	/** "POL" */
 	public final static String POLYMORPHISM      = "POL";
 	/** "MSG" */
