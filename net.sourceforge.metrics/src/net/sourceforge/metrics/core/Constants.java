@@ -103,7 +103,9 @@ public interface Constants {
 	/** "CAP" */
 	public final static String ENCAPSULATION     = "CAP";
 	/** "CPL" */
-	public final static String COUPLING          = "CPL";
+	public final static String COUPLING          = "COF";
+	
+	public final static String COF               = "COF";
 	/** "COH" */
 	public final static String COHESION          = "COH";
 	/** "CPS" */

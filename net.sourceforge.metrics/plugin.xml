@@ -324,6 +324,11 @@
             id="CPS"
             level="type">
       </metric>
+      <metric
+            name="Coupling"
+            id="COF"
+            level="type">
+      </metric>
 <!-- calculators -->
       <!--calculator
             name="Lines of Code"
@@ -372,7 +377,7 @@
       </calculator>
       <calculator
             name="Messaging"
-            calculatorClass="net.sourceforge.metrics.calculators.Messaging"
+            calculatorClass="net.sourceforge.metrics.calculators.CouplingFactor"
             level="type">
       </calculator>
       <calculator
@@ -382,6 +387,11 @@
       </calculator>
       <calculator
             name="Composition"
+            calculatorClass="net.sourceforge.metrics.calculators.Composition"
+            level="type">
+      </calculator>
+      <calculator
+            name="Coupling"
             calculatorClass="net.sourceforge.metrics.calculators.Composition"
             level="type">
       </calculator>
