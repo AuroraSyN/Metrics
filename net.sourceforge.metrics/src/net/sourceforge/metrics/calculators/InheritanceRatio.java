@@ -20,23 +20,27 @@
  */
 package net.sourceforge.metrics.calculators;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import net.sourceforge.metrics.core.Constants;
+import net.sourceforge.metrics.core.Metric;
+import net.sourceforge.metrics.core.sources.AbstractMetricSource;
+import net.sourceforge.metrics.core.sources.TypeMetrics;
 
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaModelException;
-
-import net.sourceforge.metrics.core.Constants;
-import net.sourceforge.metrics.core.Metric;
-import net.sourceforge.metrics.core.sources.AbstractMetricSource;
-import net.sourceforge.metrics.core.sources.TypeMetrics;
 /**
  * Provides the inheritance ratio for the class
  * which is the ratio of number of methods inherited by a class to the total 
  * number of methods accessible by the methods in the class
+ * The common super-type Object is not treated under this metric
+ * and all its methods are also excluded from the calculations
  * 
  * @author sumit bisht
  *
@@ -60,7 +64,7 @@ public class InheritanceRatio extends Calculator implements Constants {
 			}
 		} catch (JavaModelException e) {
 		}
-		IType[] parents = calculateParents(source);
+		List<IType> parents = calculateParents(source);
 		for(IType parent: parents){
 			addVisibleMethods(inheritedMethods, parent);
 		}
@@ -73,14 +77,17 @@ public class InheritanceRatio extends Calculator implements Constants {
 	}
 	/**
 	 * Calculates all the parent types for the selected type
+	 * It sets the last superType obtained (The Object class) to null
 	 * @param source The selected type
 	 * @return Array of all super classes in the hierarchy of the class
 	 */
-	private IType[] calculateParents(AbstractMetricSource source){
+	private List<IType> calculateParents(AbstractMetricSource source){
 		TypeMetrics tm = (TypeMetrics)source;
 		IType iType = (IType)source.getJavaElement();
 		ITypeHierarchy hierarchy = tm.getHierarchy();
-		return hierarchy.getAllSuperclasses(iType);
+		List<IType> superClasses = Arrays.asList(hierarchy.getAllSuperclasses(iType));
+		superClasses.set(superClasses.size()-1, null);
+		return superClasses;
 	}
 	
 	/**
@@ -89,6 +96,8 @@ public class InheritanceRatio extends Calculator implements Constants {
 	 * @param classType The class type over which the iteration is to be made
 	 */
 	private void addVisibleMethods(Set<IMethod> methodSet, IType classType){
+		if(classType == null)
+			return;
 		try {
 			IMethod[] methods = classType.getMethods();
 			for(IMethod method: methods){
